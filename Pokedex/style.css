@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    margin: 0;
+    /* Remova o padding: 20px se a Pokédex estiver desalinhada */
+    padding: 0; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* dVh é ótimo para mobile, mantém 100% da área visível */
+    min-height: 100dvh; 
+    width: 100vw;
+    
+    background-image: url('NovaPasta/imagens/Background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/* ---------------- POKEDEX ---------------- */
+
+/* ========== NOME DO POKEMON ========== */
+
+
+.clicavel {
+    cursor: pointer;
+}
+
+
+/* CORREÇÃO: Ajuste o z-index dos elementos */
+.pokemon {
+    position: absolute;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 3;
+}
+
+.pokemon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Os botões precisam de z-index maior */
+
+/* A barra de pesquisa também precisa de z-index alto */
+.barraGeral {
+    position: absolute;
+    z-index: 20; /* Aumentado de 15 para 20 */
+    display: flex;
+    max-width: 180px;
+    pointer-events: auto;
+}
+
+
+
+/* Garantir que a área clicável dos botões funcione */
+.containerbotoes a,
+.containerbotoes img.botoes {
+    pointer-events: auto;
+    position: relative;
+    z-index: 11;
+}
+
+/* Ajuste a área do Pokémon para não bloquear cliques */
+
+.nomePokemon,
+.categoria {
+    pointer-events: none; /* Texto também não deve bloquear cliques */
+    z-index: 2;
+}
+
+
+.imagens img,
+.imagens video {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 90vw;
+    max-height: 80vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    z-index: 1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Container que dita o tamanho da área dos botões */
+/* 1. O Container Pai Dinâmico */
+.containerbotoes {
+    position: absolute;
+    bottom: 1%;
+    left: 0;
+
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 30;
+}
+
+/* 2. Regra Universal para FILHOS DIRETOS (Links ou Imagens Soltas) */
+/* Isso cria uma "caixa" de tamanho idêntico para cada botão */
+.containerbotoes > a, 
+.containerbotoes > img.botoes {
+    
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    
+    /* O SEGREDO DA RESPONSIVIDADE: */
+    /* 12% da largura da Pokédex, mas nunca menor que 25px e nunca maior que 50px */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. Regra para a IMAGEM em si (Dentro ou Fora do Link) */
+.containerbotoes img.botoes {
+    /* Ocupa 100% da "caixa" idêntica criada acima */
+    width: 100%;
+    height: 100%;
+    
+    /* Impede que o ícone se distorça */
+    object-fit: contain; 
+    
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    /* Reseta qualquer posicionamento antigo */
+    position: static !important;
+}
+
+/* Hover mantido, mas aplicado à imagem */
+.containerbotoes img.botoes:hover {
+    transform: scale(1.1);
+}
+    
+
+/* ---------------- CONTAINER DO POKEMON ---------------- */
+
+/* TODOS começam escondidos */
+
+/* Apenas o que estiver com .aberto aparece - VERSÃO ÚNICA E CORRETA */
+
+
+.pokemon.aberto {
+    display: flex;  /* MANTÉM FLEX, NÃO MUDA PARA BLOCK! */
+    animation: pokemonTransform 0.6s ease-out forwards;
+}
+
+/* ---------------- IMAGEM DO POKEMON ---------------- */
+
+/* ---------------- BOTÕES ---------------- */
+/* --- 1. AJUSTE DA DIV PAI (TUDO) --- */
+.tudo {
+    width: 100%;
+    max-width: min(600px, 90vw);
+    max-height: 90vh;   
+    /* MUDANÇA CHAVE: 
+       Em vez de um width fixo em vh, use 'max-width' para permitir que ela 
+       encolha no modo Respondendo, mas não cresça demais. */
+    max-width: 44vh; 
+    
+    height: 100%;
+    max-height: 83vh;
+    z-index: 5;
+
+    /* Centraliza a pokedex dentro da div tudo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
+}
+
+/* --- CONTAINER PAI (.pokedex) --- */
+.pokedex {
+    max-width:90%;
+    overflow: hidden;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    
+    /* MODO RESPONDENDO: 
+       A largura acompanha o mouse (vw) e a altura segue a proporção 
+       para os itens internos não sumirem. */
+    width: 100%;
+    aspect-ratio: 375 / 440;
+}
+
+/* --- A TAG QUE VOCÊ QUER RESPONSIVA (.carcaca) --- */
+.carcaca {
+    max-width:100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* MUDANÇA CHAVE:
+       'object-fit: fill' força a imagem a cobrir 100% do aspect-ratio 
+       da .pokedex, eliminando as faixas amarelas nas laterais. */
+    object-fit: fill; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    overflow: hidden;
+    border-radius: 15px; 
+}
+.botoes:hover {
+    transform: scale(1.2);
+}
+
+/* ---------------- NOME ---------------- */
+
+
+
+.nomePokemon {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    backdrop-filter: blur(2px);
+
+    position: absolute;
+    top: 0; 
+    left: 2%;
+    width: 45%;
+    height: 12%;
+    font-size: clamp(0.6rem, 2vw, 1.3rem);
+    min-height: 25px;
+    
+    color: white;
+    background-color: rgba(0, 0, 0, 0.33);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    border-radius: 8px; /* Arredondado em todos os lados fica mais limpo */
+    border: 2px solid white;
+    z-index: 10;
+
+    margin: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+
+.categoria {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    bottom: 81%; /* Logo abaixo do nome */
+    left: 3%;
+    width: 25%;
+    height: 5%;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px; /* Pílula perfeita */
+    z-index: 5;
+    pointer-events: none;
+}
+/* Tipos */
+.eletrico {
+    background-color: rgba(238, 189, 53, 0.75);
+}
+
+.agua {
+    background-color: rgba(31, 135, 241, 0.75);
+}
+
+.planta {
+    background-color: rgba(154, 204, 80, 0.75);
+}
+
+.lutador {
+    background-color: rgba(156, 81, 35, 0.75);
+}
+
+.fogo {
+    background-color: rgba(233, 22, 57, 0.75);
+}
+
+/* ---------------- BARRA DE PESQUISA ---------------- */
+
+
+.barraGeral {
+    position: absolute;
+    right: 2.1%;
+    width: 48%; /* Ocupa quase metade da largura da Pokédex */
+    max-width: 360px; /* Limite para telas grandes */
+    height: 7%; /* Define uma altura proporcional */
+    z-index: 20;
+    display: flex;
+    align-items: center; /* Centraliza o input e a lupa verticalmente */
+}
+
+.barraExterna {
+    background-color: #BDCAD1;
+    width: 15%; /* Largura proporcional ao container pai */
+    min-width: 25px;
+    height: 100%; /* Mesma altura do input */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+}
+
+.barraExterna .lupa {
+    position: relative;
+    width: 60%; /* A imagem da lupa ocupa 60% do quadrado cinza */
+    height: auto;
+    object-fit: contain;
+}
+
+#barraPesquisa {
+    backdrop-filter: blur(2px);
+    /* Remove o width: 140px fixo que estava travando o layout */
+    flex: 1; 
+    width: 100%; /* Faz ele tentar ocupar o máximo do container .barraGeral */
+    
+    /* Altura proporcional */
+    height: 100%;
+    padding: 0 8px;
+    
+    /* Fonte que encolhe com a tela */
+    font-size: clamp(0.6rem, 2.2vw, 0.85rem); 
+    
+    color: #BDCAD1;
+    background: rgba(0, 0, 0, 0.329);
+    border-top: 2px solid #BDCAD1;
+    border-bottom: 2px solid #BDCAD1;
+    border-left: 2px solid #BDCAD1;
+    border-right: none;
+    border-radius: 15px 0 0 15px;
+    z-index: 4;
+    box-sizing: border-box; /* Essencial para o padding não quebrar a largura */
+}
+
+#barraPesquisa::placeholder {
+    color: #BDCAD1;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* ---------------- ANIMAÇÃO DO POKEMON ---------------- */
+@keyframes pokemonPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 20px rgba(253, 253, 220, 0.5));
+    }
+    75% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 transparent);
+    }
+}
+
+.pokemon.aberto .imagemPokemon{
+    animation: pokemonPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+
+

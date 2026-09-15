@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('NovaPasta/imagens/Background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ---------------- POKEDEX ---------------- */
+
+.pokedex {
+    position: relative;
+    width: 60vh;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carcaca img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    top: 0;
+    left: 0;
+}
+
+/* ---------------- CONTAINER DO POKEMON ---------------- */
+
+/* TODOS começam escondidos */
+.pokemon {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Apenas o que estiver com .aberto aparece */
+.pokemon.aberto {
+    display: flex;
+}
+
+.pokemon.aberto {
+    animation: pokeballOpen 0.6s ease-in-out forwards;
+}
+
+/* ---------------- IMAGEM DO POKEMON ---------------- */
+
+.poke {
+    width: 600px;
+}
+
+/* ---------------- BOTÕES ---------------- */
+
+.containerbotoes {
+    z-index: 2;
+    position: absolute;
+    bottom: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.containerbotoes .botoes {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    top: 188px;
+    cursor: pointer;
+    z-index: 11;
+    transition: transform 0.2s ease;
+}
+
+.botoes:hover {
+    transform: scale(1.2);
+}
+
+/* ---------------- NOME ---------------- */
+
+.nomePokemon {
+    position: absolute;
+    color: white;
+    top: 80px;
+    left: 117px;
+    background-color: rgba(0, 0, 0, 0.33);
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    max-width: 150px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    padding: 0 15px;
+    border: 2px solid white;
+    z-index: 2;
+}
+
+#nome {
+    margin: 0;
+    font-size: 1.2rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* ---------------- CATEGORIA ---------------- */
+
+.categoria {
+    position: absolute;
+    color: white;
+    top: 137px;
+    left: 117px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    max-width: 80px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    padding: 0 15px;
+    z-index: 2;
+}
+
+/* Tipos */
+
+.eletrico {
+    background-color: rgba(238, 189, 53, 0.75);
+}
+
+.agua {
+    background-color: rgba(31, 135, 241, 0.75);
+}
+
+.planta {
+    background-color: rgba(154, 204, 80, 0.75);
+}
+
+.lutador {
+    background-color: rgba(156, 81, 35, 0.75);
+}
+
+.fogo {
+    background-color: rgba(233, 22, 57, 0.75);
+}
+
+/* ---------------- BARRA DE PESQUISA ---------------- */
+
+.pokedex .barraGeral {
+    position: absolute;
+    top: 160px;
+    right: 100px;
+}
+
+.barraGeral {
+    display: flex;
+    align-items: center;
+}
+
+.barraExterna {
+    background-color: #BDCAD1;
+    width: 20px;
+    height: 21px;
+    padding: 4px;
+    border-radius: 0 15px 15px 0;
+}
+
+.barraExterna .lupa {
+    position: relative;
+    width: 15px;
+    cursor: pointer;
+    top: 3px;
+    z-index: 4;
+}
+
+#barraPesquisa {
+    width: 140px;
+    padding: 5px;
+    color: #BDCAD1;
+    background: rgba(0, 0, 0, 0.329);
+    border-top: 2px solid #BDCAD1;
+    border-bottom: 2px solid #BDCAD1;
+    border-left: 2px solid #BDCAD1;
+    border-right: none;
+    border-radius: 15px 0 0 15px;
+    z-index: 3;
+}
+
+#barraPesquisa::placeholder {
+    color: #BDCAD1;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* ESTILO BASE DOS POKÉMON */
+.pokemon {
+    display: none; /* Importante: todos começam escondidos */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* CLASSE ABERTO - controlada pelo JS */
+.pokemon.aberto {
+    display: block; /* ou o display que você usa (flex, grid, etc) */
+    opacity: 1;
+}
+
+/* ANIMAÇÃO - aplicada APENAS quando a classe aberto é adicionada */
+@keyframes pokemonTransform {
+    0% {
+        transform: scale(0.3) rotate(-180deg);
+        filter: brightness(0) blur(10px);
+    }
+    50% {
+        transform: scale(1.1) rotate(10deg);
+        filter: brightness(0.5) blur(5px);
+    }
+    75% {
+        transform: scale(0.95) rotate(-5deg);
+        filter: brightness(0.8) blur(2px);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) blur(0);
+    }
+}
+
+/* A animação roda quando a classe é adicionada */
+.pokemon.aberto {
+    animation: pokemonTransform 0.6s ease-out forwards;
+    /* Mantenha o display que você precisa */
+    display: block; /* Ajuste para flex, grid, etc conforme seu layout */
+}
+
+/* ---------------------------------------------------------
+   1. CELULARES (344px até 500px)
+   Atende: iPhone SE, XR, 12/14 Pro, S8+, S20 Ultra, Pixel 7, Z Fold 5
+   --------------------------------------------------------- */
+@media (max-width: 500px) {
+    .pokedex {
+        width: 90vw; /* Usa quase toda a largura da tela */
+        max-width: 400px;
+    }
+    .nomePokemon { font-size: 0.8rem; }
+    .categoria { font-size: 0.7rem; }
+    .botoes { width: 25px; }
+}
+
+/* ---------------------------------------------------------
+   2. TABLETS E TELAS MÉDIAS (501px até 1024px)
+   Atende: iPad Mini/Air/Pro, Surface Pro 7, Duo, Nest Hub, Zenbook Fold
+   --------------------------------------------------------- */
+@media (min-width: 501px) and (max-width: 1024px) {
+    .pokedex {
+        /* Se a tela for baixinha (ex: Nest Hub 1024x600), a Pokédex diminui */
+        width: min(800px, 80vh); 
+    }
+    .nomePokemon { font-size: 1rem; }
+    .categoria { font-size: 0.9rem; }
+    .botoes { width: 45px; }
+}
+
+
+/* ---------------------------------------------------------
+   3. DESKTOP E TELAS GRANDES (1025px até TVs 4K)
+   Atende: Monitores, Notebooks e TVs
+   --------------------------------------------------------- */
+@media (min-width: 1025px) {
+    .pokedex {
+        /* Em TVs, evita que a Pokédex fique gigante e perca resolução */
+        width: min(420px, 85vh); 
+    }
+    .nomePokemon { font-size: 1.2rem; }
+    .categoria { font-size: 1rem; }
+    .botoes { width: 50px; }
+}
+
+@media (min-width: 1026px) and (max-width: 1920px) {
+    .pokedex {
+        /* Se a tela for baixinha (ex: Nest Hub 1024x600), a Pokédex diminui */
+        width: min(420px, 80vh); 
+    }
+    .nomePokemon { font-size: 1rem; }
+    .categoria { font-size: 0.9rem; }
+    .botoes { width: 45px; }
+}
+
+/* AJUSTE EXTRA PARA TELAS "DEITADAS" (Landscape) */
+@media (orientation: landscape) and (max-height: 500px) {
+    .pokedex {
+        width: 50vh; /* Baseia o tamanho na altura para não cortar em cima/baixo */
+    }
+}
+/* ------------------- iPHONES ------------------- */
+/* iPhone SE (375x667) */
+@media (width: 375px) and (height: 667px) {
+    .pokedex { width: 295px; }
+}
+
+/* ------------------- TABLETS ------------------- */
+/* iPad Mini (768x1024) */
+@media (width: 768px) and (height: 1024px) {
+    .pokedex { width: 460px; }
+}
+
+/* iPad Air (820x1180) */
+@media (width: 820px) and (height: 1180px) {
+    .pokedex { width: 530px; }
+}
+
+/* iPad Pro (1024x1366) */
+@media (width: 1024px) and (height: 1366px) {
+    .pokedex { width: 620px; }
+}
+
+/* Surface Pro 7 (912x1368) */
+@media (width: 912px) and (height: 1368px) {
+    .pokedex { width: 610px; }
+}
+
+/* Surface Duo (540x720) */
+@media (width: 540px) and (height: 720px) {
+    .pokedex { width: 320px; }
+}
+
+
+/* Asus Zenbook Fold (1280x853 / 853x1280) */
+@media (width: 853px) and (height: 1280px) {
+    .pokedex { width: 570px; }
+}
+
+/* ------------------- SMART DISPLAYS ------------------- */
+/* Nest Hub (1024x600) */
+@media (width: 1024px) and (height: 600px) {
+    .pokedex { width: 265px; }
+}
+
+/* Nest Hub Max (1280x800) */
+@media (width: 1280px) and (height: 800px) {
+    .pokedex { width: 355px; }
+}

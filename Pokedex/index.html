@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="NovaPasta/imagens/icones/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+        <div class="tudo">
+            <div class="imagens">
+                <img src="NovaPasta/imagens/tampa.png" class="clicavel" id="capa">
+                <video id="gif-animacao" class="hidden" muted playsinline preload="auto">
+                    <source src="NovaPasta/imagens/animacao.webm" type="video/webm">
+                </video>
+                <img src="NovaPasta/imagens/fim.png" class="hidden" id="imagem-final">
+            </div>
+            <div class="pokedex hidden" id="pokedex">
+                <div class="carcaca">
+                <!-- Pokémon Ativo -->
+                <div class="container">
+                    <div class="pokemon aberto" id="pikachu">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/pikachu.png" alt="Pikachu">
+                        <div class="nomePokemon">
+                            <p>Pikachu</p>
+                        </div>
+                        <div class="categoria eletrico">
+                            <p class="categoriaNome">Elétrico</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="raichu">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/raichu.png" alt="Raichu">
+                        <div class="nomePokemon">
+                            <p>Raichu</p>
+                        </div>
+                        <div class="categoria eletrico">
+                            <p class="categoriaNome">Elétrico</p>
+                        </div>
+                    </div>
+                    <div class="pokemon" id="buizel">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/buizel.png" alt="Buizel">
+                        <div class="nomePokemon">
+                            <p>Buizel</p>
+                        </div>
+                        <div class="categoria agua">
+                            <p class="categoriaNome">Água</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="floatzel">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/floatzel.png" alt="Floatzel">
+                        <div class="nomePokemon">
+                            <p>Floatzel</p>
+                        </div>
+                        <div class="categoria agua">
+                            <p class="categoriaNome">Água</p>
+                        </div>
+                    </div>
+                    <div class="pokemon" id="riolu">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/riolu.png" alt="Riolu">
+                        <div class="nomePokemon">
+                            <p>Riolu</p>
+                        </div>
+                        <div class="categoria lutador">
+                            <p class="categoriaNome">Lutador</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="lucario">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/lucario.png" alt="Lucario">
+                        <div class="nomePokemon">
+                            <p>Lucario</p>
+                        </div>
+                        <div class="categoria lutador">
+                            <p class="categoriaNome">Lutador</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="megaLucario">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/megaLucario.png" alt="Mega Lucario">
+                        <div class="nomePokemon">
+                            <p>Mega Lucario</p>
+                        </div>
+                        <div class="categoria lutador">
+                            <p class="categoriaNome">Lutador</p>
+                        </div>
+                    </div>
+                    <div class="pokemon" id="charmander">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/charmander.png" alt="Charmander">
+                        <div class="nomePokemon">
+                            <p>Charmander</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">Fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="charmeleon">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/charmeleon.png" alt="Charmeleon">
+                        <div class="nomePokemon">
+                            <p>Charmeleon</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">Fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="charizard">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/charizard.png" alt="Charizard">
+                        <div class="nomePokemon">
+                            <p>Charizard</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">Fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="megaCharizardX">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/megaCharizardX.png" alt="Mega Charizard X">
+                        <div class="nomePokemon">
+                            <p>Mega Charizard X</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">Fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="megaCharizardY">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/megaCharizardY.png" alt="Mega Charizard Y">
+                        <div class="nomePokemon">
+                            <p>Mega Charizard Y</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">Fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon" id="chespin">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/chespin.png" alt="Chespin">
+                        <div class="nomePokemon">
+                            <p>Chespin</p>
+                        </div>
+                        <div class="categoria planta">
+                            <p class="categoriaNome">planta</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="quilladin">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/quilladin.png" alt="Quilladin">
+                        <div class="nomePokemon">
+                            <p>Quilladin</p>
+                        </div>
+                        <div class="categoria planta">
+                            <p class="categoriaNome">planta</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="chesnaught">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/chesnaught.png" alt="Chespin">
+                        <div class="nomePokemon">
+                            <p>Chesnaught</p>
+                        </div>
+                        <div class="categoria planta">
+                            <p class="categoriaNome">planta</p>
+                        </div>
+                    </div>
+                    <div class="pokemon" id="fennekin">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/fennekin.png" alt="Fennekin">
+                        <div class="nomePokemon">
+                            <p>Fennekin</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="braixen">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/braixen.png" alt="Braixin">
+                        <div class="nomePokemon">
+                            <p>Braixen</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="delphox">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/delphox.png" alt="Chesnaught">
+                        <div class="nomePokemon">
+                            <p>Chesnaught</p>
+                        </div>
+                        <div class="categoria fogo">
+                            <p class="categoriaNome">fogo</p>
+                        </div>
+                    </div>
+                    <div class="pokemon" id="froakie">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/froakie.png" alt="Froakie">
+                        <div class="nomePokemon">
+                            <p>Frokie</p>
+                        </div>
+                        <div class="categoria agua">
+                            <p class="categoriaNome">água</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="frogadier">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/frogadier.png" alt="Frogadier">
+                        <div class="nomePokemon">
+                            <p>Frogadier</p>
+                        </div>
+                        <div class="categoria agua">
+                            <p class="categoriaNome">água</p>
+                        </div>
+                    </div>
+                    <div class="pokemon evolucao" id="greninja">
+                        <audio class="somPokemon"></audio>
+                        <img class="poke imagemPokemon" src="NovaPasta/Pokemons/greninja.png" alt="Greninja">
+                        <div class="nomePokemon">
+                            <p>Greninja</p>
+                        </div>
+                        <div class="categoria agua">
+                            <p class="categoriaNome">água</p>
+                        </div>
+                    </div>
+                    <!-- Botões -->
+                    <!-- Barra de Pesquisa -->
+                    <div class="containerbotoes">
+                        <img class="botoes voltar" src="NovaPasta/imagens/icones/voltar.png" alt="Voltar">
+                        <img class="botoes passar" src="NovaPasta/imagens/icones/passar.png" alt="Passar">
+                        <a href="https://github.com/viniciussborges" class="compartilhar" target="_blank">
+                            <img class="botoes" src="NovaPasta/imagens/icones/compartilhar.png" alt="GitHub">
+                        </a>
+                        <img class="botoes" src="NovaPasta/imagens/icones/play.png" alt="Play" onclick="tocarSom()">
+                        <img class="botoes evolucaoPassar" src="NovaPasta/imagens/icones/pokeEvolucao.png" alt="Evolução">
+                        <a class="forum" href="#" target="_blank">
+                            <img class="botoes" src="NovaPasta/imagens/icones/maisInfo.png" alt="Mais informações">
+                        </a>
+                    </div>
+                    <div class="barraGeral">
+                        <input type="text" id="barraPesquisa" placeholder="Pesquisar..." spellcheck="false">
+                        <div class="barraExterna">
+                            <img id="botaoPesquisar" class="lupa" src="NovaPasta/imagens/icones/lupa.png" alt="Pesquisar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            
+                </div>
+        </div>
+
+
+
+    <!--Carcaça-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
